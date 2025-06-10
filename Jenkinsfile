@@ -1,4 +1,7 @@
 pipeline {
+    tools{
+        go "go-build"
+    }
     agent {
       node {
         label 'docker-agent-alpine'
@@ -10,6 +13,7 @@ pipeline {
             steps {
                 echo 'Building..'
                 sh'''
+                go version
                 go build main.go
                 echo 'Build is successful'
                 '''
